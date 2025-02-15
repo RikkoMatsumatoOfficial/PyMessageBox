@@ -30,7 +30,20 @@ def MessageBoxA(hwnd, message, title, buttons):
     return GetDLL_User32().MessageBoxA(hwnd, message, title, buttons)
 
 def MessageBoxA_WithReturnCode(hwnd, message, title, buttons, retcode):
-    if(GetDLL_User32().MessageBoxA(hwnd, message, title, buttons) == retcode):
-        return True
-    else:
-        return False
+    match int(retcode):
+        case int(IDABORT):
+            return GetDLL_User32().MessageBoxA(hwnd, message, title, buttons, IDABORT) == IDABORT
+        case int(IDCANCEL):
+            return GetDLL_User32().MessageBoxA(hwnd, message, title, buttons, IDCANCEL) == IDCANCEL
+        case int(IDCONTINUE):
+            return GetDLL_User32().MessageBoxA(hwnd, message, title, buttons, IDCONTINUE) == IDCONTINUE
+        case int(IDIGNORE):
+            return GetDLL_User32().MessageBoxA(hwnd, message, title, buttons, IDIGNORE) == IDIGNORE
+        case int(IDNO):
+            return GetDLL_User32().MessageBoxA(hwnd, message, title, buttons, IDNO) == IDNO
+        case int(IDRETRY):
+            return GetDLL_User32().MessageBoxA(hwnd, message, title, buttons, IDRETRY) == IDRETRY
+        case int(IDTRYAGAIN):
+            return GetDLL_User32().MessageBoxA(hwnd, message, title, buttons, IDTRYAGAIN) == IDTRYAGAIN
+        case int(IDYES):
+            return GetDLL_User32().MessageBoxA(hwnd, message, title, buttons, IDYES) == IDYES
